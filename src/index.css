@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-blue-rms{
+    background-color: #04001e;
+}
+
+.bg-rms-secondary{
+    background-color: darkviolet;
+}
+
+.text-rms{
+    color: #f4f6fc;
+}
+
+.btn-animation{
+    background-color: #031070;
+    transition: ease-in-out 0.3s;
+}
+
+.btn-animation:hover{
+    box-shadow: -5px 5px 0 0 darkviolet;
+    transform: translate(5px,-5px);
+    transition: ease-in-out 0.4s;
+}
