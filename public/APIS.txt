@@ -1,0 +1,35 @@
+<script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?key=colocar_key_de_google&libraries=places">
+</script>
+
+const googlePlaceAPILoad = setInterval(() => {
+ if (window.google){
+  this.google=window.google;
+  clearInterval(googlePlaceAPILoad);
+  console.log('Load Place API');
+  const mapCenter = new this.google.maps.LatLng( 4.624335,-74.064644);
+  this.map = new this.google.maps.Map(
+   document.getElementById('gmapContainer'), {
+    center: mapCenter,
+    zoom: 15 });
+   };
+  },100);
+
+const request = {
+ query: document.getElementById('origen').value ,
+ fields: ['photos', 'formatted_address',
+ 'name','place_id']
+};
+const service = new this.google.maps.places.PlacesService(this.map);
+service.findPlaceFromQuery(request, this.findPlaceResult);
+
+findPlaceResult = (results, status) => {
+ console.log('PlaceServiceStatus: '+status);
+ if (status === 'OK') {
+  results.map((place) => {
+   console.log('Place name: '+place.name+ ' Place id: '+place.place_id +' Place address: '+place.formatted_address)
+   const placePhoto = place.photos[0].getUrl({'maxWidth': 640, 'maxHeight': 480})
+   this.setState({photo:placePhoto,direccion:place.formatted_address})
+  })
+ }
+}
